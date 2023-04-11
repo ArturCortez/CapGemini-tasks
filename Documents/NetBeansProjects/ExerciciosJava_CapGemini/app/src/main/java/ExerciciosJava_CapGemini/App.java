@@ -275,9 +275,138 @@ public class App {
         
     }
     
+    public static void exercise28(){
+        
+        float totalFolhaDePgto = 0;
+        for(int i = 0; i < 50; i++){
+            float randomSalario = 1000 + RandomNumberProvider.RandomSingleNumberCreator(25000);
+            String strSalarioFunc = String.valueOf(randomSalario);
+
+            String strNomeFunc = "Func";
+
+            String newSalario = CalculateSalaryAndComission.CalculateSalaryRaise(strNomeFunc.concat(" - ").concat(String.valueOf(i)), strSalarioFunc, "1000");
+            System.out.println(strNomeFunc.concat(" - ").concat(String.valueOf(i)) + " novo salario: R$ " + newSalario);
+            totalFolhaDePgto += Float.parseFloat(newSalario);
+            
+        }
+        
+        System.out.println(totalFolhaDePgto);
+    }
+    
+    public static void exercise29(){
+        List<String> mesList =  new ArrayList<>(Arrays.asList("Mes invalido","Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"));
+        String escolhaUsuario = QuestionarioRecorrente.SistemaPerguntaRecorrente("Digite um numero");
+        int index = Integer.parseInt(escolhaUsuario);
+        try {
+            String mesEscolhido = mesList.get(index);
+            System.out.println("Mes escolhido: " + mesEscolhido);
+            
+        } catch(Exception e){
+            System.out.println("Mes Invalido");
+            String reiniciar = QuestionarioRecorrente.SistemaPerguntaRecorrente("Tentar novamente? (S/N)");
+            if(reiniciar.equalsIgnoreCase("n")){
+                return;
+            } else {
+            
+                exercise29();
+                return;   
+            }
+   
+        }
+        
+    }
+    
+    public static void exercise30(){
+        int[] arr = SortingAlgorithms.createArray(6);
+        int n = arr.length - 1;
+        System.out.println("");
+        for(int element : arr){            
+            System.out.print("Element is: " + element + " "); 
+        }
+        System.out.println("");
+        System.out.println("n is: " + n);
+        int [] sortedArr = SortingAlgorithms.QuikSort(arr, 0, n);
+        
+        System.out.println("sorted Array: ");
+        for(int element : sortedArr){         
+            System.out.print("Sorted Element is: " + element + " "); 
+        }
+
+    }
+    
+    public static void exercise31(){
+        System.out.println(QuestionarioRecorrente.OperacaoMatematicaTresTermos());
+        
+    }
+    
+    public static void exercise32(){
+        
+        try{
+            int ladoUm = Integer.parseInt(QuestionarioRecorrente.SistemaPerguntaRecorrente("Digite o valor para o primeiro lado: "));
+            int ladoDois = Integer.parseInt(QuestionarioRecorrente.SistemaPerguntaRecorrente("Digite o valor para o segundo lado: "));
+            int ladoTres = Integer.parseInt(QuestionarioRecorrente.SistemaPerguntaRecorrente("Digite o valor para o terceiro lado: "));
+            TriangleClass triangulo = new TriangleClass(ladoUm, ladoDois, ladoTres);
+            System.out.print(triangulo.CheckTrianglePossibility());
+            System.out.println("");
+            System.out.print("Tipo do Triangulo: ");
+            System.out.println(triangulo.DefineTriangleType());
+        
+        
+        } catch (Exception e){
+            System.out.println(e);
+        }
+    }
+    
+    public static void exercise33(){
+        
+        int nivelProfessor = Integer.parseInt(QuestionarioRecorrente.SistemaPerguntaRecorrente("Qual nivel do Professor? (1, 2 ou 3"));
+        int qtdadeHoras = Integer.parseInt(QuestionarioRecorrente.SistemaPerguntaRecorrente("Quantas horas-aulas foram dadas?"));
+        ProfessorClass professor = new ProfessorClass();
+        professor.setProfessorNivel(nivelProfessor);
+        
+        int salarioFinal = professor.salarioFinal(qtdadeHoras);
+        System.out.println("Salario Final: " + salarioFinal);
+    }
+    
+    public static void exercise34(){
+        List<NadadorClass> listNadadores = NadadorClass.CreateRandomListNadadores(8);
+        
+        
+        for(NadadorClass nadador : listNadadores){
+            if(nadador.getAge() >= 5 && nadador.getAge() < 7){
+                nadador.setNivelCompeticao("Infantil A");
+            } else if(nadador.getAge() >= 8 && nadador.getAge() < 10){
+                nadador.setNivelCompeticao("Infantil B");
+            } else if(nadador.getAge() >= 11 && nadador.getAge() < 13){
+                nadador.setNivelCompeticao("Juvenil A");
+            } else if(nadador.getAge() >= 14 && nadador.getAge() < 17){
+                nadador.setNivelCompeticao("Juvenil B");
+            } else if(nadador.getAge() >= 18 && nadador.getAge() < 25){
+                nadador.setNivelCompeticao("Senior B");
+            }  else {
+                nadador.setNivelCompeticao("idade fora da faixa etaria");
+            }
+            System.out.println(nadador.getName()+ " idade: "+ nadador.getAge() + " - " + nadador.getNivelCompeticao());
+        }
+    }
+    
+    public static void exercise35(){
+        String tipoResidencia = QuestionarioRecorrente.SistemaPerguntaRecorrente("Qual tipo da residencia?");
+        
+        float ConsumoMes = Float.parseFloat(QuestionarioRecorrente.SistemaPerguntaRecorrente("Qual consumo no mes?"));
+        
+        ResidenciaClass imovel = new ResidenciaClass();
+        
+        imovel.setTipoResidencia(tipoResidencia);
+        imovel.setCustoKWh(imovel.getTipoResidencia());
+        float answer = imovel.CalculateTotalCost(ConsumoMes);
+        System.out.println("Custo de Eletricidade: " + answer);
+    }
+    
+    
     public static void main(String[] args) {
 
-        new App().exercise27();
+        new App().exercise35();
         
         System.out.println();
         //new App().Calculate();

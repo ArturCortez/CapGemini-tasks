@@ -4,6 +4,7 @@
  */
 package ExerciciosJava_CapGemini.helpers;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -11,6 +12,11 @@ import java.util.Scanner;
  * @author Juca
  */
 public class CalculateSalaryAndComission {
+    
+    private String nomeFunc = "";
+    private String salarioFunc = "0";
+    
+    
     public static String[] CalculateSalaryComission(){
         
         Scanner leitor = new Scanner(System.in);
@@ -30,6 +36,36 @@ public class CalculateSalaryAndComission {
         String[] answer = new String[]{nomeVendedor, strSalario, totalSalary};
         
         return answer;
+    }
+    
+    public static String CalculateSalaryRaise(String nomeFuncionario, String salarioFunc, String salarioMin){
+        
+        float fltSalarioFator = Float.parseFloat(salarioFunc)/ Float.parseFloat(salarioMin);
+        
+        
+        if(fltSalarioFator < 3){
+            
+            float aumentoDado = 0.50f;
+            return String.format(Locale.US,"%.2f" ,(Float.parseFloat(salarioFunc) * (1 + aumentoDado)));
+            
+        } else if( fltSalarioFator >= 3 && fltSalarioFator < 10){
+            
+            float aumentoDado = 0.20f;
+            return String.format(Locale.US,"%.2f" ,(Float.parseFloat(salarioFunc) * (1 + aumentoDado)));
+            
+        } else if (fltSalarioFator >= 10 && fltSalarioFator < 20){
+            
+            float aumentoDado = 0.15f;
+            return String.format(Locale.US,"%.2f" ,(Float.parseFloat(salarioFunc) * (1 + aumentoDado)));
+            
+        } else {
+            
+            float aumentoDado = 0.10f;
+            return String.format(Locale.US,"%.2f" ,(Float.parseFloat(salarioFunc) * (1 + aumentoDado)));
+            
+        }
+        
+        
     }
     
 }

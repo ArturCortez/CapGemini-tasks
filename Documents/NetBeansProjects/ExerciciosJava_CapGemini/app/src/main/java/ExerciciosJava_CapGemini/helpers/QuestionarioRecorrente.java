@@ -119,5 +119,53 @@ public class QuestionarioRecorrente {
     
     }
     
+    public static boolean CheckOperador(String Operador){
+        List<String> strOperadores = new ArrayList<>(Arrays.asList("+", "-", "*", "/", "%"));
+        
+        for(String element : strOperadores){
+            if (element.equalsIgnoreCase(Operador));
+            return true;
+        }
+        return false;
+    }
+    
+    public static float OperacaoMatematicaTresTermos(){
+        String enunciadoNumero = "Digite um numero";
+        String enunciadoOperador = "Digite um operador matemático";
+        String A = SistemaPerguntaRecorrente(enunciadoNumero);
+        String B = SistemaPerguntaRecorrente(enunciadoNumero);
+        String C = SistemaPerguntaRecorrente(enunciadoOperador);
+        
+        if (CheckOperador(C)){
+            float firstNumber = Float.parseFloat(A);
+            float secondNumber = Float.parseFloat(B);
+            
+            try{
+                switch(C){
+                    case "+":
+                        return firstNumber + secondNumber;
+                    case "-":
+                        return firstNumber - secondNumber;
+                    case "*":
+                        return firstNumber * secondNumber;
+                    case "/":
+                        return firstNumber / secondNumber;
+                    case "%":
+                        return firstNumber % secondNumber; 
+                }
+                System.out.println();
+            } catch (Exception e){
+                if (secondNumber == 0){
+                    System.out.println("Cannot divide by zero");
+                }
+                System.out.print(e);
+            }
+        }
+        
+        System.out.println("Could not find operator");
+        return 0;
+        
+    }
+    
     
 }
